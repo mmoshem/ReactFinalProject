@@ -3,24 +3,24 @@ import './Auth.css';
 
 function Register() {
   const [formData, setFormData] = useState({
-    name: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
     confirmPassword: ''
   });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO: Implement registration logic
     console.log('Registration attempt:', formData);
   };
+
+  const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormData(prev => ({ ...prev, [name]: value }));
+};
 
   return (
     <div className="auth-container">
@@ -29,9 +29,19 @@ function Register() {
         <div className="form-group">
           <input
             type="text"
-            name="name"
+            name="first_name"
             placeholder="Full Name"
-            value={formData.name}
+            value={formData.first_name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="last_name"
+            placeholder="Full Name"
+            value={formData.last_name}
             onChange={handleChange}
             required
           />
